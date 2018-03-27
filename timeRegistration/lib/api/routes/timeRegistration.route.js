@@ -6,12 +6,13 @@ const timeRegistrationCtlr = require('../controllers/timeRegistration.controller
 const router = express.Router();
 
 
-router.route('/:username/:datum')
-
+router.route('/:uuid/:date')
   .get(timeRegistrationCtlr.get)
-  .put(timeRegistrationCtlr.update)
-  .delete(timeRegistrationCtlr.remove);
+  .put(timeRegistrationCtlr.update);
 
-//router.param('productId', productCtrl.load);
+router.route('/')
+  .post(timeRegistrationCtlr.create);
+
+
 
 module.exports = router;

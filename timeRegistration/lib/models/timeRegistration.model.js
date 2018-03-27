@@ -2,16 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
-const ProductSchema = new Schema({
-  name: { type: String, required: true },
-  category: { type: String, index: true },
-  gender: { type: String, index: true },
-  price: { type: Number, required: true },
-  sizes: { type: [String] },
-  colors: { type: [String] },
-  imageUrl: { type: [String], default: [] }
+const RegistrationSchema = new Schema({
+  uuid: { type: String, required: true },
+  workedHours: { type: String, required: true  },
+  date: { type: String, required: true  },
+  description: { type: String, required: true },
 });
 
 module.exports = {
-  Registration: mongoose.model('Product', ProductSchema)
+  Registration: mongoose.model('Registration', RegistrationSchema)
 };

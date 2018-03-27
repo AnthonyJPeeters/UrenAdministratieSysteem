@@ -1,3 +1,3 @@
 module.exports = {
-  Product: require('./timeRegistration.model').Registration,
+  timeRegistration: require('./timeRegistration.model').Registration,
 };

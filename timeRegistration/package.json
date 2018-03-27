@@ -1,5 +1,5 @@
 {
-  "name": "Time Registration api",
+  "name": "TimeRegistrationApi",
   "version": "1.0.0",
   "description": "Time Registration api",
   "main": "index.js",
@@ -20,7 +20,9 @@
     "express-jwt": "^5.3.0",
     "express-validation": "^1.0.2",
     "http-status": "^1.0.1",
+    "joi": "^13.1.2",
     "jsonwebtoken": "^8.1.0",
+    "method-override": "^2.3.10",
     "moment": "^2.18.1",
     "mongoose": "^4.13.7",
     "morgan": "^1.8.1",
