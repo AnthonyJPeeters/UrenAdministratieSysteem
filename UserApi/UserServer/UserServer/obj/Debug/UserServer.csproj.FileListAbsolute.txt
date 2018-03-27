@@ -99,3 +99,6 @@ C:\Users\antho\Documents\GitHub\UrenAdministratieSysteem\UserApi\UserServer\User
 C:\Users\antho\Documents\GitHub\UrenAdministratieSysteem\UserApi\UserServer\UserServer\obj\Debug\UserServer.csproj.CopyComplete
 C:\Users\antho\Documents\GitHub\UrenAdministratieSysteem\UserApi\UserServer\UserServer\obj\Debug\UserServer.dll
 C:\Users\antho\Documents\GitHub\UrenAdministratieSysteem\UserApi\UserServer\UserServer\obj\Debug\UserServer.pdb
+C:\Users\antho\Documents\GitHub\UrenAdministratieSysteem\UserApi\UserServer\UserServer\obj\Debug\UserServer.Migrations.InitialCreate.resources
+C:\Users\antho\Documents\GitHub\UrenAdministratieSysteem\UserApi\UserServer\UserServer\obj\Debug\UserServer.csproj.GenerateResource.cache
+C:\Users\antho\Documents\GitHub\UrenAdministratieSysteem\UserApi\UserServer\UserServer\obj\Debug\UserServer.Migrations.UserMigration.resources
