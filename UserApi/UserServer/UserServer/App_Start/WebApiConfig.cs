@@ -7,9 +7,19 @@ namespace UserServer
 {
     public static class WebApiConfig
     {
+        public static UserProjectContext db { get; private set; }
+
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+
+            db = new UserProjectContext();
+
+            Random rnd = new Random();
+            db.Users.Add(new Models.User("TestUser created: " + DateTime.Now, Guid.NewGuid().ToString(), rnd.Next(100000, 500000).ToString(), (decimal)8.10));
+            db.SaveChanges();
+            //string connection = db.Database.Connection.ConnectionString;
+
 
             // Web API routes
             config.MapHttpAttributeRoutes();

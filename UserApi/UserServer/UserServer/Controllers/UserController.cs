@@ -4,34 +4,37 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UserServer.Models;
 
 namespace UserServer.Controllers
 {
-    public class ValuesController : ApiController
+    public class UserController : ApiController
     {
-        // GET api/values
+        // GET: api/User Example
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        // GET: api/User/test
+        [Route("api/user/{username}")]
+        public User Get(string username)
         {
-            return "value";
+            User user = WebApiConfig.db.Users.SingleOrDefault(userQuery => userQuery.Name == username);
+            return user;
         }
 
-        // POST api/values
+        // POST: api/User
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
+        // PUT: api/User/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE: api/User/5
         public void Delete(int id)
         {
         }
