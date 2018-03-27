@@ -1,0 +1,33 @@
+{
+  "name": "Time Registration api",
+  "version": "1.0.0",
+  "description": "Time Registration api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": "",
+  "author": "Lars Heesakkers",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "express-jwt": "^5.3.0",
+    "express-validation": "^1.0.2",
+    "http-status": "^1.0.1",
+    "jsonwebtoken": "^8.1.0",
+    "moment": "^2.18.1",
+    "mongoose": "^4.13.7",
+    "morgan": "^1.8.1",
+    "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "nodemon": "^1.13.3"
+  }
+}
