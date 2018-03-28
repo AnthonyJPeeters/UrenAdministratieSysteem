@@ -10,7 +10,9 @@ function getall(req, res,next) {
 }
 
 function get(req, res,next) {
+
   const id = req.params._id;
+
   invoices.find({  _id: id })
       .then(i => res.status(200).send(i))
       .catch(next);

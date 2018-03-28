@@ -11,7 +11,7 @@ router.route('/')
 router.route('/:uuid')
   .get(invoicectrl.getall);
 
-router.route('/:uuid/:_id')
+router.route('/:d/:_id')
   .get(invoicectrl.get)
   .put(invoicectrl.update);
 
