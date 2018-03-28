@@ -1,0 +1,16 @@
+<div class="col-md-6">
+  <h2>Welkom</h2>
+  <div class="row">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" formControlName="name" class="form-control">
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
