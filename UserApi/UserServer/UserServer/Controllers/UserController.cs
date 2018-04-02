@@ -10,18 +10,18 @@ namespace UserServer.Controllers
 {
     public class UserController : ApiController
     {
-        // GET: api/User Example
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/User/test
         [Route("api/user/{username}")]
         public User Get(string username)
         {
             User user = WebApiConfig.db.Users.SingleOrDefault(userQuery => userQuery.Name == username);
             return user;
+        }
+
+
+        public List<User> Get()
+        {
+            return WebApiConfig.db.Users.ToList<User>();
         }
 
         // POST: api/User
