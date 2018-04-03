@@ -26,8 +26,20 @@ export class timeRegistrationService {
       });
   }
 
+  getAllNotPaid(uuid: string) {
+    return this.http.get(this.serverUrl + '/' + uuid, { headers: this.headers })
+      .toPromise()
+      .then(response => {
+        return response.json() as time;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
+
   update(newtime: time) {
-    this.http.put(this.serverUrl + '/' + newtime.uuid + '/' + newtime.date, newtime, { headers: this.headers }).toPromise()
+    this.http.put(this.serverUrl + '/' + newtime.uuid, newtime, { headers: this.headers }).toPromise()
     .then(response => {
       this.time = response.json() as time;
       return response.json() as time[];

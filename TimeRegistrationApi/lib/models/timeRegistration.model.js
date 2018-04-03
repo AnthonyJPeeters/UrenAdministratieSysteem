@@ -7,6 +7,7 @@ const RegistrationSchema = new Schema({
   workedHours: { type: String, required: true  },
   date: { type: String, required: true  },
   description: { type: String, required: true },
+  paid: { type: String, required: true }
 });
 
 module.exports = {

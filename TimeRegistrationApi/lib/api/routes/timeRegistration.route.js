@@ -8,10 +8,13 @@ const router = express.Router();
 
 router.route('/:uuid/:date')
   .get(timeRegistrationCtlr.get)
-  .put(timeRegistrationCtlr.update);
 
-router.route('/')
-  .post(timeRegistrationCtlr.create);
+
+router.route('/:uuid')
+  .post(timeRegistrationCtlr.create)
+  .get(timeRegistrationCtlr.getAll)
+  .put(timeRegistrationCtlr.update)
+  
 
 
 

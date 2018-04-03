@@ -5,6 +5,8 @@ import { time } from '../../../shared/time.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Data } from '@angular/router/src/config';
 import { Time } from '@angular/common/src/i18n/locale_data_api';
+import { forEach } from '@angular/router/src/utils/collection';
+
 
 @Component({
   selector: 'app-user',
@@ -22,6 +24,7 @@ export class UserComponent implements OnInit {
       'description': new FormControl("", Validators.required),
       'date': new FormControl(Validators.required),
       'uuid': new FormControl("lars", Validators.required),
+      'paid': new FormControl("false", Validators.required),
     })
     let i = Date.now();
     this.change(i);
@@ -32,6 +35,7 @@ export class UserComponent implements OnInit {
     }
     else {
       this.tservice.post(this.timeForm.value);
+      this.updating = true;
     }
   }
 
@@ -49,8 +53,41 @@ export class UserComponent implements OnInit {
       this.timeForm.controls['workedHours'].setValue("00:00")
       this.timeForm.controls['description'].setValue("")
     }
+  }
+  timeConvert(n) {
+    var num = n;
+    var hours = (num / 60);
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    var rest: Number[] = [rhours, rminutes];
+    return rest;
+  }
+  getTotalPrice() {
+    var notpaid: time[];
+    var totalhours: number = 0;
+    var totalminutes: number = null;
+    var i =""
+    this.tservice.getAllNotPaid("lars")
+      .then((rec) =>{
+        rec => notpaid = rec
+        for(let i =0 ;i<=rec.length -1;i++){
+          var splitted = rec[i]["workedHours"].split(":")
+          totalhours = totalhours + Number(splitted[0])
+          totalminutes = totalminutes +  Number(splitted[1])
+          rec[i]["paid"] = "true"
+          this.tservice.update(rec[i])
+        }
+        var temp = this.timeConvert(totalminutes)
+        totalhours = totalhours + Number(temp[0])
+        console.log(totalhours + "." + temp[1]);
+      })
+      .catch(error => console.log(error));
 
   }
-
+  generateInvoice() {
+    console.log(this.getTotalPrice())
+    
+  }
 }
 
