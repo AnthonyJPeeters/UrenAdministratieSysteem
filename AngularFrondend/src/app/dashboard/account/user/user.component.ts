@@ -10,6 +10,7 @@ import { invoiceService } from '../../../services/invoice.service';
 import { invoice } from '../../../shared/invoice.model';
 
 
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -21,6 +22,7 @@ export class UserComponent implements OnInit {
   constructor(private tservice: timeRegistrationService,private invoiceService: invoiceService) { }
 
   ngOnInit() {
+    
     this.timeForm = new FormGroup({
       'workedHours': new FormControl(Validators.required),
       'description': new FormControl("", Validators.required),
@@ -59,13 +61,14 @@ export class UserComponent implements OnInit {
 
   
   generateInvoice() {
-    var totaltime  = this.tservice.getTotalPrice()
-    console.log(totaltime)
-    if(totaltime[0] != null)
-    {
-
-      this.invoiceService.post(new invoice("lars","true",totaltime[1],666,2))
-    }
+    this.tservice.getTotalPrice().then((t) => {
+          var returnValue = this.tservice.twodArr;
+          if(returnValue[0] != null)
+          {
+            this.invoiceService.post(new invoice("lars","true",returnValue[1],666,2))
+          }
+          //TODO: logic
+    })
   }
 }
 

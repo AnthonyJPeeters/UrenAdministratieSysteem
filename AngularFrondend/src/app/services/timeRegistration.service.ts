@@ -10,6 +10,7 @@ export class timeRegistrationService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private serverUrl = environment.serverUrl + '/timeregistration'; // URL to web api
   private time: time = null ;
+  public twodArr: any; 
   tasksChanged = new Subject<time>();
   
 
@@ -31,7 +32,7 @@ export class timeRegistrationService {
     return this.http.get(this.serverUrl + '/' + uuid, { headers: this.headers })
       .toPromise()
       .then(response => {
-        return response.json() as time;
+        return response.json() as time[];
       })
       .catch(error => {
         return this.handleError(error);
@@ -51,13 +52,13 @@ export class timeRegistrationService {
     var notpaid: time[];
     var totalhours: number = 0;
     var totalminutes: number = null;
-    var ids: string[]
+    var ids: String[] = [];
     var i =""
-    this.getAllNotPaid("lars")
+    return this.getAllNotPaid("lars")
       .then((rec) =>{
-        rec => notpaid = rec
-        for(let i =0 ;i<=rec.length -1;i++){
-          var splitted = rec[i]["workedHours"].split(":")
+        notpaid = rec
+        for(let i =0 ;i<=notpaid.length -1;i++){
+          var splitted = notpaid[i]["workedHours"].split(":")
           totalhours = totalhours + Number(splitted[0])
           totalminutes = totalminutes +  Number(splitted[1])
           rec[i]["paid"] = "true"
@@ -67,7 +68,8 @@ export class timeRegistrationService {
         var temp = this.timeConvert(totalminutes)
         totalhours = totalhours + Number(temp[0])
         var totalTime = totalhours + "." + temp[1]
-        return [totalTime,ids];
+        console.log(totalTime);
+        this.twodArr = [totalTime,ids];
       })
       .catch(error => console.log(error));
 
