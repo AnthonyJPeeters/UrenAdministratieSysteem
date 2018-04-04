@@ -7,6 +7,7 @@ const InvoiceSchema = new Schema({
   uuid: { type: String, required: true },
   paid: { type: String, required: true  },
   registerId: [{type: String}],
+  totalprice: [{type: Number, required: true }],
   currentWage: { type: Number, required: true },
 });
 

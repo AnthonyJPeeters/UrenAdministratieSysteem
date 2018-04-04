@@ -9,7 +9,7 @@ import { invoice } from "../shared/invoice.model";
 @Injectable()
 export class invoiceService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = environment.serverUrl + '/invoice/'; // URL to web api
+  private serverUrl = "http://localhost:3001/api/invoice/"; // URL to web api
   private invoice: invoice[] = [];
   invoiceChanged = new Subject<invoice[]>();
 
@@ -39,6 +39,13 @@ export class invoiceService {
       .catch(error => {
         return this.handleError(error);
       });
+  }
+  post(invoice: invoice) {
+    this.http.post(this.serverUrl, invoice).toPromise()
+    .then(response => {
+      this.invoice.push(response.json() as invoice)
+      return response.json() as invoice[];
+    })
   }
 
   private handleError(error: any): Promise<any> {

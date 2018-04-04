@@ -11,6 +11,7 @@ export class timeRegistrationService {
   private serverUrl = environment.serverUrl + '/timeregistration'; // URL to web api
   private time: time = null ;
   tasksChanged = new Subject<time>();
+  
 
 
   constructor(private http: Http) { }
@@ -36,7 +37,41 @@ export class timeRegistrationService {
         return this.handleError(error);
       });
   }
+  timeConvert(n) {
+    var num = n;
+    var hours = (num / 60);
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    var rest: Number[] = [rhours, rminutes];
+    return rest;
+  }
 
+  getTotalPrice() {
+    var notpaid: time[];
+    var totalhours: number = 0;
+    var totalminutes: number = null;
+    var ids: string[]
+    var i =""
+    this.getAllNotPaid("lars")
+      .then((rec) =>{
+        rec => notpaid = rec
+        for(let i =0 ;i<=rec.length -1;i++){
+          var splitted = rec[i]["workedHours"].split(":")
+          totalhours = totalhours + Number(splitted[0])
+          totalminutes = totalminutes +  Number(splitted[1])
+          rec[i]["paid"] = "true"
+          ids.push(rec[i]["_id"] + "")
+          this.update(rec[i])
+        }
+        var temp = this.timeConvert(totalminutes)
+        totalhours = totalhours + Number(temp[0])
+        var totalTime = totalhours + "." + temp[1]
+        return [totalTime,ids];
+      })
+      .catch(error => console.log(error));
+
+  }
 
   update(newtime: time) {
     this.http.put(this.serverUrl + '/' + newtime.uuid, newtime, { headers: this.headers }).toPromise()
@@ -46,7 +81,7 @@ export class timeRegistrationService {
     })
   }
   post(time: time) {
-    this.http.post(this.serverUrl, time).toPromise()
+    this.http.post(this.serverUrl +"/" + time.uuid, time).toPromise()
     .then(response => {
       this.time = response.json() as time;
       return response.json() as time[];
