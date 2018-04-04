@@ -7,6 +7,7 @@ const httpStatus = require( 'http-status' );
 function get(req, res,next) {
   const userId = req.params.uuid;
   const date = req.params.date;
+  console.log(userId + date);
   timeRegistration.find({ uuid: userId, date: date })
       .then(i => res.status(200).send(i))
       .catch(next);

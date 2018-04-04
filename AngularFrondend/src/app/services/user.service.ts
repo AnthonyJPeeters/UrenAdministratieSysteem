@@ -8,10 +8,11 @@ import { user } from "../shared/user.model";
 
 @Injectable()
 export class userService {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers = new Headers({ 'Content-Type': 'text/plain' });
   //TODO make this the user serverurl
   private serverUrl = environment.userServerUrl + '/user/'; // URL to web api
-  private user: user[] = [];
+  private users: user[] = [];
+  public user: user;
   userChanged = new Subject<user[]>();
 
 
@@ -21,8 +22,8 @@ export class userService {
     return this.http.get(this.serverUrl, { headers: this.headers })
       .toPromise()
       .then(response => {
-        this.user = response.json() as user[];
-        this.userChanged.next(this.user.slice());
+        this.users = response.json() as user[];
+        this.userChanged.next(this.users.slice());
         return response.json() as user[];
       })
       .catch(error => {
@@ -32,9 +33,13 @@ export class userService {
   }
 
   getOne(username: String) {
+    console.log(this.serverUrl + username);
+    console.log(this.headers)
     return this.http.get(this.serverUrl + username, { headers: this.headers })
       .toPromise()
       .then(response => {
+        this.user = response.json() as user;
+        console.log(this.user)
         return response.json() as user;
       })
       .catch(error => {

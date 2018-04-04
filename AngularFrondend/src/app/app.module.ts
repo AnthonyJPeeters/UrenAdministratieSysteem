@@ -13,7 +13,7 @@ import { InvoiceStartComponent } from './dashboard/invoice/invoice-start/invoice
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { timeRegistrationService } from './services/timeRegistration.service';
 import { invoiceService } from './services/invoice.service';
-
+import { userService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { invoiceService } from './services/invoice.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [timeRegistrationService,invoiceService],
+  providers: [timeRegistrationService,invoiceService, userService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,8 +3,8 @@ require('dotenv').config();
 
 const config = {
   env: process.env.NODE_ENV || 'development',
-  port: process.env.PORT || 3000,
-  mongoUri: process.env.MONGO_URI || '',
+  port: 3000 || 3000,
+  mongoUri: "mongodb://test:test@ds133496.mlab.com:33496/cleaningschedule" || '',
   mongooseDebug: process.env.MONGOOSE_DEBUG || true,
 };
 
