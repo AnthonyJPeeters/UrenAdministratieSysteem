@@ -1,2 +1,30 @@
-<a routerLink="/dashboard">Go Back</a>
-{{invoice.currentWage}}
+<a routerLink="/dashboard">Go Back</a><p>
+<h5>Invoice</h5>
+<span>Invoice of: {{user.name}}</span><br>
+<span>UserID: {{user.UserId}}</span><br>
+<span>AccountNumber: {{user.AccountNumber}}</span>
+<p>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Time Registration indentifier</th>
+        <td>{{invoice.registerId}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Paid</th>
+        <td>{{invoice.paid}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Wage</th>
+        <td>{{invoice.currentWage}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <span>Price: {{0 + invoice.totalprice  | number:'1.2-2'}}</span>
+  

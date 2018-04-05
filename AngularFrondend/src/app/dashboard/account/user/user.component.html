@@ -1,7 +1,7 @@
 <div class="col-md-12">
-    <h2>Welkom: </h2>
-    rekeningnummer:<br>
-    loon:
+    <h2>Welkom: {{currentUser.name}} </h2>
+    rekeningnummer: {{currentUser.accountNumber}}<br>
+    loon: {{currentUser.currentWage}}
     <div class="row">
       <form [formGroup]="timeForm" (ngSubmit)="onSubmit()">
         <div class="col-xs-12">

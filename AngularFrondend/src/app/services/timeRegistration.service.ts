@@ -4,6 +4,8 @@ import { environment } from "../../environments/environment";
 import { Subject } from "rxjs/Subject";
 import { Http, Headers } from "@angular/http";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { userService } from "./user.service";
+import { user } from "../shared/user.model";
 
 @Injectable()
 export class timeRegistrationService {
@@ -15,7 +17,7 @@ export class timeRegistrationService {
   
 
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private userService: userService) { }
 
   getOne(uuid: string, date: string) {
     return this.http.get(this.serverUrl + '/' + uuid + '/' + date, { headers: this.headers })
@@ -54,7 +56,8 @@ export class timeRegistrationService {
     var totalminutes: number = null;
     var ids: String[] = [];
     var i =""
-    return this.getAllNotPaid("lars")
+    
+    return this.getAllNotPaid(this.userService.user.UserId)
       .then((rec) =>{
         notpaid = rec
         for(let i =0 ;i<=notpaid.length -1;i++){

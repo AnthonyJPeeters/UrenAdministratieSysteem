@@ -5,9 +5,14 @@
   routerLink="invoice/nr/{{in._id}}"
   routerLinkActive="active"
   class="list-group-item clearfix">
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{ in.uuid }}</h4>
-    <p class="list-group-item-text">{{ in.paid }}</p>
+  <div class="row">
+  <div class="col-md-9">
+    <h4 class="list-group-item-heading">{{ currentUser.name }}</h4>
+    <p class="list-group-item-text">Invoice nr -> {{ in._id }}</p>
   </div>
+  <div class="col-md-3 price">
+    Price: {{0 +  in?.totalprice  | number:'1.2-2' }}
+  </div>
+</div>
 </a>
 </div>

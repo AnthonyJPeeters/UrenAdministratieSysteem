@@ -8,6 +8,8 @@ import { Time } from '@angular/common/src/i18n/locale_data_api';
 import { forEach } from '@angular/router/src/utils/collection';
 import { invoiceService } from '../../../services/invoice.service';
 import { invoice } from '../../../shared/invoice.model';
+import { userService } from '../../../services/user.service';
+import { user } from '../../../shared/user.model';
 
 
 
@@ -19,15 +21,16 @@ import { invoice } from '../../../shared/invoice.model';
 export class UserComponent implements OnInit {
   timeForm: FormGroup = null;
   updating: boolean = false;
-  constructor(private tservice: timeRegistrationService,private invoiceService: invoiceService) { }
+  currentUser: user;
+  constructor(private tservice: timeRegistrationService,private invoiceService: invoiceService,private userService: userService) { }
 
   ngOnInit() {
-    
+    this.currentUser = this.userService.user
     this.timeForm = new FormGroup({
       'workedHours': new FormControl(Validators.required),
       'description': new FormControl("", Validators.required),
       'date': new FormControl(Validators.required),
-      'uuid': new FormControl("lars", Validators.required),
+      'uuid': new FormControl(this.currentUser.UserId, Validators.required),
       'paid': new FormControl("false", Validators.required),
     })
     let i = Date.now();
@@ -45,7 +48,7 @@ export class UserComponent implements OnInit {
 
   change(searchValue: any) {
     let workedHours = null;
-    this.tservice.getOne("lars", searchValue).then((b) => {
+    this.tservice.getOne(this.currentUser.UserId, searchValue).then((b) => {
       workedHours = b.workedHours
       this.timeForm.controls['workedHours'].setValue(b.workedHours)
       this.timeForm.controls['description'].setValue(b.description)
@@ -65,7 +68,7 @@ export class UserComponent implements OnInit {
           var returnValue = this.tservice.twodArr;
           if(returnValue[0] != null)
           {
-            this.invoiceService.post(new invoice("lars","true",returnValue[1],666,2))
+            this.invoiceService.post(new invoice(this.currentUser.UserId,"true",returnValue[1],666,2))
           }
           //TODO: logic
     })
