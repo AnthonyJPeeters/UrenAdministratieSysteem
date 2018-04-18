@@ -9,7 +9,7 @@ import { invoice } from "../shared/invoice.model";
 @Injectable()
 export class invoiceService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = "http://localhost:3001/api/invoice/"; // URL to web api
+  private serverUrl = "https://invoiceapi2.herokuapp.com/api/invoice/"; // URL to web api
   private invoice: invoice[] = [];
   invoiceChanged = new Subject<invoice[]>();
 

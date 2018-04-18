@@ -70,7 +70,6 @@ export class UserComponent implements OnInit {
           {
             this.invoiceService.post(new invoice(this.currentUser.UserId,"true",returnValue[1],666,2))
           }
-          //TODO: logic
     })
   }
 }

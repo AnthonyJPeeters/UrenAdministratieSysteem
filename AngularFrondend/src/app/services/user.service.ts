@@ -10,7 +10,7 @@ import { user } from "../shared/user.model";
 export class userService {
   private headers = new Headers({ 'Content-Type': 'text/plain' });
   //TODO make this the user serverurl
-  private serverUrl = environment.userServerUrl + '/user/'; // URL to web api
+  private serverUrl = 'http://ec2-18-184-56-133.eu-central-1.compute.amazonaws.com/api/user/' ; // URL to web api
   private users: user[] = [];
   public user: user;
   userChanged = new Subject<user[]>();
