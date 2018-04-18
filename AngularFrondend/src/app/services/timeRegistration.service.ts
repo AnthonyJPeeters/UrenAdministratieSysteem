@@ -10,7 +10,7 @@ import { user } from "../shared/user.model";
 @Injectable()
 export class timeRegistrationService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = 'https://timeregistration2.herokuapp.com/api/timeregistration/'; // URL to web api
+  private serverUrl = 'https://timeregistration2.herokuapp.com/api/timeregistration'; // URL to web api
   private time: time = null ;
   public twodArr: any; 
   tasksChanged = new Subject<time>();
