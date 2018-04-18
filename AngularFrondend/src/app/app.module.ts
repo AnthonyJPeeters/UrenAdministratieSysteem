@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { timeRegistrationService } from './services/timeRegistration.service';
 import { invoiceService } from './services/invoice.service';
 import { userService } from './services/user.service';
+import { calculateService } from './services/calculate.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { userService } from './services/user.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [timeRegistrationService,invoiceService, userService],
+  providers: [timeRegistrationService,invoiceService, userService, calculateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   serverUrl: 'http://localhost:3000/api',
-  userServerUrl: 'http://localhost:64170/api'
+  userServerUrl: 'http://localhost:64170/api',
+  calculateServerUrl: 'http://localhost:8080/calc/'
 };
