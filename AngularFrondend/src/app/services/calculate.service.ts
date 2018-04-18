@@ -13,7 +13,7 @@ export class calculateService {
 
   getOne(value1: number, value2: number) {
     console.log(value1 + value2);
-    return this.http.get(this.serverUrl + value1 + "/" + value2, { headers: this.headers })
+    return this.http.get('http://ec2-18-184-33-23.eu-central-1.compute.amazonaws.com:8080/calc/' + value1 + "/" + value2, { headers: this.headers })
       .toPromise()
       .then(response => {
         console.log(response.json())
