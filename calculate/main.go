@@ -10,6 +10,8 @@ import (
 
 func main() {
 	http.HandleFunc("/calc/", func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "text/html; charset=ascii")
+	  w.Header().Set("Access-Control-Allow-Origin", "*")
 		var splittedString = strings.Split(r.URL.Path, "/" )
 		 var finalResult float64
 		finalResult = 1
